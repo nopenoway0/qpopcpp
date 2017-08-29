@@ -3,14 +3,12 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+#include <settings_class.h>
+#include <fstream>
+
 class Settings_Profile{
 	public:
-		/**
-		 * Used to test class functionality
-		 * prints input - must be int
-		 * @param a var to print
-		 */
-		void test_function(int a);
 		/**
 		 * Instantiates an empty settings profile. All vars are set to empty strings or -1
 		 */
@@ -33,11 +31,13 @@ class Settings_Profile{
 		float getY(int a);
 		int getDResX();
 		int getDresY();
+		float Settings_Profile::getThresholdAt(int a);
 		void setConfigName(std::string name);
 		void setBaseDir(std::string name);
 		void addImgName(std::string name);
 		void addX(float x);
 		void addY(float y);
+		void addThreshold(float threshold);
 		void printInfo();
 		void setDefaultRes(int x, int y);
 		void setProcessName(std::string);
@@ -45,6 +45,7 @@ class Settings_Profile{
 		// Store profile data in xml
 		std::vector<float> x; //X offset to find button
 		std::vector<float> y; // Y offset to find button
+		std::vector<float> threshold;
 		std::vector<std::string> img_names; //name of string - TODO: make a list to have multiple images
 		std::string base_dir; // base directory for profile
 		std::string config_name; // config name for profile - e.g. lol.xml
