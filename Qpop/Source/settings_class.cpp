@@ -1,36 +1,68 @@
-#include <iostream>
-#include <settings_class.h>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/xml_parser.hpp>
-
-void Settings_Profile::test_function(int a){
-	std::cout << a;
-	return;
-}
+#include "settings_class.h"
 
 Settings_Profile::Settings_Profile(){
 }
+/**
+ * Takes a filename as a string. Opens file, and streams in the following format:
+ * Set config name
+ * Process Title
+ * base directory - assumed ./ or current directory
+ * button's image name
+ * Default X resolution
+ * Default Y resolution
+ * Offset x of button - button's distance from top left corner of window
+ * Offset y of button - button's distance from top left corner of window
+ * threshold for image
 
-Settings_Profile::Settings_Profile(std::string filename){
+ * 
+ * 
+ */
+Settings_Profile::Settings_Profile(std::string filename = "lol.txt"){
+	char* line;
+	
 	try{
-		boost::property_tree::ptree data;
-		boost::property_tree::xml_parser::read_xml(filename, data);
-		std::string inputs = data.get<std::string>("db.profile.img_name");
-		this->addImgName(inputs);
-		inputs = data.get<std::string>("db.profile.config_name");
-		this->setConfigName(inputs);
-		inputs = data.get<std::string>("db.profile.base_dir");
-		this->setBaseDir(inputs);
-		float coord = data.get<float>("db.profile.x");
-		this->addX(coord);
-		coord = data.get<float>("db.profile.y");
-		this->addY(coord);
-		this->default_res_x = data.get<int>("db.profile.default_res_x");
-		this->default_res_y = data.get<int>("db.profile.default_res_y");
+		//parse file into settings profile
+		std::ifstream input_file(filename);
+		int resx, resy;
+		float threshold;
+		// Do parsing here
+		line = (char*) calloc(256, sizeof(char));
+
+		// Start populating object. 
+		// Implement easier way but using function pointer array and while loop
+		input_file.getline(line, 256);
+		this->setConfigName(line);
+		memset(line, 0, 256);
+
+		input_file.getline(line, 256);
+		this->setProcessName(line);
+		memset(line, 0, 256);
+
+		input_file.getline(line,256);
+		this->setBaseDir(line);	
+
+		input_file.getline(line, 256);
+		this->addImgName(line);
+		memset(line, 0, 256);
+
+		input_file >> resx;
+		input_file >> resy;
+		this->setDefaultRes(resx, resy);
+
+		input_file >> resx;
+		input_file >> resy;
+		this->addX(resx);
+		this->addY(resy);	
+
+		input_file >> threshold;
+		this->addThreshold(threshold);
+
+		input_file.close();		
 	}catch(const std::exception &e){
 		std::cerr << e.what();
-		exit(1);
+		free(line); // necessary?
 	}
+	free(line);
 }
 /*
 void Settings_Profile::printableContents(std::string* file_contents){
@@ -68,7 +100,9 @@ void Settings_Profile::addY(float y){
 }
 
 void Settings_Profile::printInfo(){
-	std::cout << "Config Name: " << this->config_name << "\nBase Dir: " << this->base_dir << "\nImage Names: " << img_names.at(0) << "\nX: " << this->x.at(0) << "\nY: " << this->y.at(0) << "\n";
+	std::cout << "Config Name: " << this->config_name << "\nExecutable: " << this->process_name << "\nBase Dir: ";
+	std::cout << this->base_dir << "\nImage Names: " << img_names.at(0);
+	std::cout << "\nX: " << this->x.at(0) << "\nY: " << this->y.at(0) << "\n";
 }
 std::string Settings_Profile::getImgName(int a){
 	return this->img_names.at(a);
@@ -106,4 +140,12 @@ int Settings_Profile::getDresY(){
 
 int Settings_Profile::getDResX(){
 	return this->default_res_x;
+}
+
+void Settings_Profile::addThreshold(float threshold){
+	this->threshold.push_back(threshold);
+}
+
+float Settings_Profile::getThresholdAt(int a){
+	return this->threshold.at(a);
 }
