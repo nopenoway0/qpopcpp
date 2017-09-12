@@ -8,13 +8,16 @@
 #define BUCKET_SIZE 256
 #define DEFAULT_THRESHOLD 3 // default difference in picture, greater than this the picture doesn't match
 
-class Img_Processing{
-	public:
-		static float compareImages(std::string img1, std::string img2);
-		static void setThreshold(float newValue);
-		static float compareMemoryImg(HBITMAP mem_img1, HBITMAP mem_img2);
-		static struct result_data compareMemoryImgSel(HBITMAP canvas, HBITMAP img, int x, int y, struct Scaling_Info* si_s);
-	private:
-		static void getBuckets(FILE* img, int* store, int bytes_to_read);
-};
+namespace Img_Processing{
+		using namespace std;
+		using namespace Ancillary_Function;
+		
+		float compareImages(string img1, string img2);
+		void setThreshold(float newValue);
+		float compareMemoryImg(HBITMAP mem_img1, HBITMAP mem_img2);
+		float compareMemoryImg(Gdiplus::Bitmap* img1, Gdiplus::Bitmap* img2);
+		struct result_data compareMemoryImgSel(HBITMAP canvas, HBITMAP img, int x, int y, struct Scaling_Info* si_s);
+		void getBuckets(FILE* img, int* store, int bytes_to_read);
+		void cropBitmap(Gdiplus::Bitmap** img, int x, int y, int width, int height);
+}
 #endif
