@@ -19,5 +19,6 @@ namespace Img_Processing{
 		struct result_data compareMemoryImgSel(HBITMAP canvas, HBITMAP img, int x, int y, struct Scaling_Info* si_s);
 		void getBuckets(FILE* img, int* store, int bytes_to_read);
 		void cropBitmap(Gdiplus::Bitmap** img, int x, int y, int width, int height);
+		void cropBitmap(Gdiplus::Bitmap** img, Gdiplus::Bitmap** cropped_img, int x, int y, int width, int height);
 }
 #endif

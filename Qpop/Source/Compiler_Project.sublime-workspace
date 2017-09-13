@@ -1,0 +1,1037 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"prin",
+				"printInfo\t(settings_class.cpp)"
+			],
+			[
+				"League",
+				"LeagueClientUx.exe\t(ancillary_functions.h)"
+			],
+			[
+				"config_fil",
+				"config_filename"
+			],
+			[
+				"confi",
+				"config_file"
+			],
+			[
+				"config",
+				"config_file"
+			],
+			[
+				"GetHBITM",
+				"GetHBITMAPFromImageFile\t(ancillary_functions.h)"
+			],
+			[
+				"scal",
+				"scaling_ratio"
+			],
+			[
+				"add",
+				"addThreshold\t(settings_class.h)"
+			],
+			[
+				"Base",
+				"setBaseDir"
+			],
+			[
+				"set",
+				"setBaseDir"
+			],
+			[
+				"input",
+				"input_file"
+			],
+			[
+				"Scla",
+				"Scaling_Info"
+			],
+			[
+				"GetP",
+				"GetProcessNames"
+			],
+			[
+				"wxDefault",
+				"wxDefaultPosition"
+			],
+			[
+				"proc",
+				"proc_list"
+			],
+			[
+				"process",
+				"process_ids"
+			],
+			[
+				"ex",
+				"szExeFile"
+			],
+			[
+				"bytes",
+				"bytes_returned"
+			],
+			[
+				"byte_",
+				"bytes_returned"
+			],
+			[
+				"current",
+				"current_module"
+			],
+			[
+				"ne",
+				"needle_icon"
+			],
+			[
+				"wxID_",
+				"wxID_LOAD_CONFIG\t(Menu.h)"
+			],
+			[
+				"wxF",
+				"wxFilePickerCtrl"
+			],
+			[
+				"wxID",
+				"wxID_PROCESS_NAME"
+			],
+			[
+				"Save",
+				"SaveConfig\t(Menu.h)"
+			],
+			[
+				"wx",
+				"wxprec.h\t(Injector.cpp)"
+			],
+			[
+				"ROO",
+				"ROOT_DIR"
+			],
+			[
+				"isol",
+				"isolated_part"
+			],
+			[
+				"direc",
+				"directory_iterator"
+			],
+			[
+				"MyChec",
+				"MyCheckBox.h\t(MyCheckBox.cpp)"
+			],
+			[
+				"match",
+				"match_index2"
+			],
+			[
+				"match_",
+				"match_index1"
+			],
+			[
+				"mac",
+				"match_index2"
+			],
+			[
+				"GetW",
+				"GetWrestler"
+			],
+			[
+				"wres",
+				"wrestler_list"
+			],
+			[
+				"wxDefa",
+				"wxDefaultValidator"
+			],
+			[
+				"Wrest",
+				"Wrestler.h\t(FPWR.cpp)"
+			],
+			[
+				"sum_",
+				"sum_seven"
+			],
+			[
+				"die_",
+				"die_two"
+			],
+			[
+				"ret",
+				"return_range"
+			],
+			[
+				"number",
+				"number_cards"
+			],
+			[
+				"deal",
+				"dealer_stats"
+			],
+			[
+				"hand1",
+				"hand1_stats"
+			],
+			[
+				"stra",
+				"straightHand"
+			],
+			[
+				"card",
+				"cards"
+			],
+			[
+				"cah",
+				"change_number"
+			],
+			[
+				"ace",
+				"acceptable_choice"
+			],
+			[
+				"numb",
+				"number_cards"
+			],
+			[
+				"num",
+				"number_cards"
+			],
+			[
+				"hand2",
+				"hand2_score"
+			],
+			[
+				"pair",
+				"pair_faces"
+			],
+			[
+				"hand_",
+				"hand_score"
+			],
+			[
+				"three",
+				"threeOfKind"
+			],
+			[
+				"suit",
+				"suit_selector"
+			],
+			[
+				"dec",
+				"deck"
+			],
+			[
+				"face",
+				"FACES"
+			],
+			[
+				"hand",
+				"hand_value"
+			],
+			[
+				"sort",
+				"sort_hand"
+			],
+			[
+				"field_",
+				"field_id"
+			],
+			[
+				"cstom",
+				"customerPtr"
+			],
+			[
+				"custom",
+				"customerRecord"
+			],
+			[
+				"print",
+				"printArray"
+			],
+			[
+				"die",
+				"die_1"
+			],
+			[
+				"Find",
+				"findAverage"
+			],
+			[
+				"r",
+				"result"
+			],
+			[
+				"mul",
+				"multipliers"
+			],
+			[
+				"muil",
+				"multiplier"
+			],
+			[
+				"thresho",
+				"threshold_holder"
+			],
+			[
+				"_img",
+				"_img_number"
+			],
+			[
+				"_num",
+				"_img_number_lock"
+			],
+			[
+				"_img_n",
+				"_img_number_lock"
+			],
+			[
+				"Scal",
+				"Scaling_Info"
+			],
+			[
+				"condi",
+				"conditionSatisfied\t(qpop_server.cpp)"
+			],
+			[
+				"conne",
+				"is_connected"
+			],
+			[
+				"connec",
+				"_connected"
+			],
+			[
+				"condit",
+				"conditionSatisfied\t(qpop_server.h)"
+			],
+			[
+				"get",
+				"get_payload"
+			],
+			[
+				"is_",
+				"is_connected"
+			],
+			[
+				"Qpo",
+				"Qpop_Server"
+			],
+			[
+				"Qpop",
+				"Qpop_Server\t(qpop_server.cpp)"
+			],
+			[
+				"start",
+				"start_server\t(qpop_server.cpp)"
+			],
+			[
+				"is",
+				"is_Connected\t(qpop_server.cpp)"
+			],
+			[
+				"place",
+				"placeholders::_1"
+			],
+			[
+				"main",
+				"main_server"
+			],
+			[
+				"stop_",
+				"stop_listening"
+			],
+			[
+				"init",
+				"intialize"
+			],
+			[
+				"on",
+				"on_open"
+			],
+			[
+				"QPP",
+				"Qpop_Server"
+			],
+			[
+				"coord",
+				"coordinates"
+			],
+			[
+				"EnumChild",
+				"EnumChildProc"
+			],
+			[
+				"defaul",
+				"default_res_y"
+			],
+			[
+				"defa",
+				"default_res_x"
+			],
+			[
+				"getDRe",
+				"getDresY\t(settings_class.cpp)"
+			],
+			[
+				"getDe",
+				"getDResX\t(settings_class.cpp)"
+			],
+			[
+				"res",
+				"default_res_y"
+			],
+			[
+				"default_res_",
+				"default_res_x"
+			],
+			[
+				"getD",
+				"getDResX\t(settings_class.h)"
+			],
+			[
+				"Settings",
+				"Settings_Profile"
+			],
+			[
+				"default_res",
+				"default_res_x\t(qpop.cpp)"
+			],
+			[
+				"eh",
+				"echo_server"
+			],
+			[
+				"message",
+				"message_ptr"
+			],
+			[
+				"on_",
+				"on_http"
+			],
+			[
+				"c",
+				"connected"
+			],
+			[
+				"visi",
+				"visibility"
+			],
+			[
+				"connect",
+				"connect_button"
+			],
+			[
+				"native",
+				"nativescript-socketio\t(package.json)"
+			],
+			[
+				"kn",
+				"knock-knock-jokes\t(package.json)"
+			],
+			[
+				"transcr",
+				"transcript_file_name"
+			],
+			[
+				"R",
+				"RequestError〔class〕"
+			],
+			[
+				"trasn",
+				"transcript_file_name"
+			],
+			[
+				"tras",
+				"transcript_file_name"
+			],
+			[
+				"Aud",
+				"AudioFile〔class〕"
+			],
+			[
+				"reco",
+				"recognize_google〔function〕"
+			],
+			[
+				"output",
+				"output_name"
+			],
+			[
+				"para",
+				"parameters"
+			],
+			[
+				"exp",
+				"expression\t(values.scala)"
+			],
+			[
+				"Undef",
+				"UndefinedException\t(ui.scala)"
+			],
+			[
+				"Undefin",
+				"UndefinedException"
+			],
+			[
+				"exten",
+				"extension"
+			],
+			[
+				"local",
+				"localEnv"
+			],
+			[
+				"Udef",
+				"UndefinedException\t(ui.scala)"
+			],
+			[
+				"va",
+				"value1"
+			],
+			[
+				"id",
+				"identifier"
+			],
+			[
+				"Type",
+				"TypeException"
+			],
+			[
+				"Jedi",
+				"JediException"
+			],
+			[
+				"Synt",
+				"SyntaxException"
+			],
+			[
+				"puzzles",
+				"puzzles_solved"
+			],
+			[
+				"puzzl",
+				"puzzle_list"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/MSBuild/MSBuild.sublime-build",
+					""
+				],
+				[
+					"Packages/MSBuild/MSBuild.sublime-build",
+					"Parallel Build"
+				],
+				[
+					"Packages/MSBuild/MSBuild.sublime-build",
+					"Debug Configuration"
+				],
+				[
+					"Packages/MSBuild/MSBuild.sublime-build",
+					"Release Configuration"
+				]
+			],
+			[
+				"Packages/MSBuild/MSBuild.sublime-build",
+				"Release Configuration"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "Package Control: ",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Li",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: di",
+				"Package Control: Disable Package"
+			],
+			[
+				"",
+				"BracketHighlighter: Toggle High Visibility Mode"
+			],
+			[
+				"Dock",
+				"DocBlockr: Decorate line comment"
+			],
+			[
+				"Hig",
+				"BracketHighlighter: Toggle High Visibility Mode"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/E/Users/Benji/Desktop/CS153Projects/wci/frontend/java/JavaError.h",
+		"/E/Users/Benji/Desktop/CS153Projects/wci/frontend/java/tokens/JavaWordToken.cpp",
+		"/E/Users/Benji/Desktop/CS153Projects/.gitignore",
+		"/E/Users/Benji/Desktop/CS153Projects/Compiler_Project.sublime-project",
+		"/E/Users/Benji/Desktop/qpop/Qpop/Qpop/Header/ancillary_functions.h",
+		"/E/Users/Benji/Desktop/qpop/Qpop/Qpop/x64/Debug/lol.txt",
+		"/E/Users/Benji/Desktop/qpop/Qpop/Qpop/Header/settings_class.h",
+		"/E/Users/Benji/Desktop/qpop/Qpop/Qpop/Source/settings_class.cpp",
+		"/E/Users/Benji/Desktop/qpop/Qpop/Qpop/Source/img_processing.cpp",
+		"/E/Users/Benji/Desktop/qpop/Source/qpop.cpp",
+		"/E/Users/Benji/Desktop/qpop/Qpop/Qpop.sublime-project",
+		"/E/Users/Benji/Desktop/qpop/Qpop/Qpop/ReadMe.txt",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/CL/CL/Injector/Menu.h",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/CL/CL/Injector/Injector.cpp",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/CL/CL/Injector/Menu.cpp",
+		"/E/Users/Benji/Desktop/Injector/Injector/README.MD",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/CL/CL/Injector/Injector.rc",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/CL/CL/Injector/MiscFunc.h",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/CL/CL/Injector/MiscFunc.cpp",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/CL/CL/Injector/Injector.vcxproj",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/CL/CL/Injector/Injector.vcxproj.filters",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/fizz.cpp",
+		"/E/Users/Benji/Desktop/disassembly/pwgr patcher.1.0.87.0/README.txt",
+		"/E/Users/Benji/Desktop/disassembly/README.md",
+		"/E/Users/Benji/Desktop/disassembly/simple_prog.cpp",
+		"/E/Users/Benji/Desktop/wxWidgets/docs/msw/install.txt",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/reader.h",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/test.cpp",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/Makefile",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/MyFrame.cpp",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/MyFrame.h",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/MyCheckBox.cpp",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/MyCheckBox.h",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/Wrestler.cpp",
+		"/E/Users/Benji/Desktop/Wrestler Extractor/Wrestler.h",
+		"/E/Users/Benji/Desktop/Wrestler Remover/Wrestler.cpp",
+		"/E/Users/Benji/Desktop/Wrestler Remover/Wrestler.h",
+		"/E/Users/Benji/Desktop/Wrestler Remover/FPWR.cpp",
+		"/E/Users/Benji/Desktop/wxWidget/docs/msw/install.txt",
+		"/E/Users/Benji/AppData/Local/Temp/Temp1_wxWidgets-3.0.3.zip/docs/msw/gtk.txt",
+		"/E/Users/Benji/AppData/Local/Temp/Temp1_wxWidgets-3.0.3.zip/docs/base/readme.txt",
+		"/E/Users/Benji/AppData/Local/Temp/Temp1_wxWidgets-3.0.3.zip/BuildGit.txt",
+		"/E/Users/Benji/Desktop/CIS37A/exam/results.txt",
+		"/E/Users/Benji/Desktop/CIS37A/exam/exam.c",
+		"/E/Users/Benji/Desktop/CIS37A/exam/final.c",
+		"/E/Users/Benji/Desktop/CIS37A/exam/project.c",
+		"/E/Users/Benji/Desktop/CIS37A/exam/myname.txt",
+		"/E/Users/Benji/Desktop/TODO.txt",
+		"/E/Users/Benji/Desktop/CIS37A/exam/lab5.c",
+		"/F/Steam Games SSD/steamapps/common/MountBlade Warband/Modules/Native/module.ini",
+		"/E/Users/Benji/AppData/Local/Temp/7zO88064413/Improved Male Faces - Readme.txt",
+		"/E/Users/Benji/AppData/Local/Temp/7zO880E5823/skins.txt",
+		"/E/Users/Benji/Documents/Mount&Blade Warband/rgl_config.txt",
+		"/E/Users/Benji/Desktop/CIS37A/exam.cpp",
+		"/E/Users/Benji/Desktop/qpop/backend_src/screen_capturer.cpp",
+		"/E/Users/Benji/Desktop/qpop/backend_src/img_processing.cpp",
+		"/E/Users/Benji/Desktop/qpop/backend_src/server_test.cpp",
+		"/E/Users/Benji/Desktop/qpop/backend_src/include/settings_class.h",
+		"/E/Users/Benji/Desktop/qpop/backend_src/settings_class.cpp",
+		"/E/Users/Benji/Desktop/qpop/backend_src/qpop.cpp",
+		"/E/Users/Benji/Desktop/qpop/backend_src/include/ancillary_functions.h",
+		"/E/Users/Benji/Desktop/qpop/backend_src/include/shared_access.h",
+		"/E/Users/Benji/Desktop/qpop/backend_src/image_captest.cpp",
+		"/E/Users/Benji/Desktop/Winter Project/app/MyApp/app/main-page.xml",
+		"/E/Users/Benji/Desktop/Winter Project/app/MyApp/app/App_Resources/Android/AndroidManifest.xml",
+		"/E/Users/Benji/Desktop/Winter Project/app/HelloWorld/package.json",
+		"/E/Users/Benji/Desktop/Winter Project/app/HelloWorld/app/main-page.js",
+		"/E/Users/Benji/Desktop/Winter Project/app/HelloWorld/app/main-page.xml",
+		"/E/Users/Benji/Desktop/Winter Project/app/HelloWorld/app/app.js",
+		"/E/Users/Benji/Desktop/Winter Project/app/HelloWorld/app/app.css",
+		"/E/Users/Benji/Downloads/cef_binary_3.3071.1642.gce7fd43_windows64/build/tests/cefsimple/Release/PipeStatus.txt",
+		"/E/Users/Benji/Desktop/Winter Project/qpop/gui/include/bootstrap.h",
+		"/E/Users/Benji/Desktop/Winter Project/qpop/gui/CMakeLists.txt",
+		"/E/Users/Benji/Desktop/Winter Project/backup/cefsimple/README-TRANSFER.txt",
+		"/E/Users/Benji/Desktop/VidToTranscripot/transcriber.py",
+		"/E/Users/Benji/Desktop/VidToTranscripot/setup.py",
+		"/E/Users/Benji/Desktop/VidToTranscripot/dist/output.txt",
+		"/E/Users/Benji/Desktop/VidToTranscripot/exec_test.py",
+		"/E/Users/Benji/Desktop/CS152/jedi/sith/console.scala",
+		"/E/Users/Benji/Desktop/CS152/jedi/sith/Makefile",
+		"/E/Users/Benji/Desktop/CS152/jedi/ewokv2/values.scala",
+		"/E/Users/Benji/Desktop/CS152/jedi/ewokv2/console.scala",
+		"/E/Users/Benji/Desktop/CS152/jedi/ewokv2/wookie/README",
+		"/E/Users/Benji/Desktop/CS152/jedi/ewokv2/expressions.scala",
+		"/E/Users/Benji/Desktop/CS152/jedi/ewokv2/ui.scala",
+		"/E/Users/Benji/Desktop/CS152/jedi/wookie/console.scala",
+		"/E/Users/Benji/Desktop/CS152/jedi/wookie/system/console.scala",
+		"/E/Users/Benji/Desktop/CS152/jedi/wookie/Makefile",
+		"/H/keys.txt",
+		"/E/Users/Benji/Desktop/cs158a_project/controller.cpp",
+		"/E/Users/Benji/Desktop/cs158a_project/Makefile",
+		"/E/Users/Benji/Desktop/CS152/jedi/ewok/ewok/README.txt",
+		"/E/Users/Benji/Desktop/CS152/jedi/ewok/ui.scala",
+		"/E/Users/Benji/Desktop/CS152/jedi/ewok/expressions.scala",
+		"/E/Users/Benji/Desktop/CS152/jedi/ewok/README",
+		"/E/Users/Benji/Desktop/CS152/jedi/ewok/values.scala",
+		"/E/Users/Benji/Desktop/CS152/jedi/ewok/console.scala",
+		"/E/Users/Benji/Desktop/CS152/jedi/ewok/Makefile",
+		"/E/Users/Benji/Desktop/CS152/acorn/Makefile",
+		"/E/Users/Benji/Desktop/sudoku_solver/solver/sudoku_creater.py",
+		"/E/Users/Benji/Desktop/sudoku_solver/solver/puzzles",
+		"/E/Users/Benji/Desktop/sudoku_solver/solver/Performance Comparisons",
+		"/E/Users/Benji/Downloads/sudokugen/generate.py",
+		"/E/Users/Benji/Downloads/sudokugen/lib/generate.py",
+		"/E/Users/Benji/AppData/Local/Temp/Temp1_Resynthesizer_v1.0-i686.zip/Resynthesizer_v1.0-i686/README_WINDOWS.txt",
+		"/E/Users/Benji/Desktop/CS152/acorn/p4/acorn.scala",
+		"/E/Users/Benji/Desktop/sudoku_solver/creator/sudoku_creater.py",
+		"/E/Users/Benji/Desktop/sudoku_solver/solver/templates.py",
+		"/E/Users/Benji/Desktop/CS152/acorn/Description.scala",
+		"/E/Users/Benji/Desktop/assignment/README",
+		"/E/Users/Benji/Desktop/CS156/inclassexercise2/self_imp.py",
+		"/E/Users/Benji/Desktop/CS156/inclassexercise2/explorer.py",
+		"/E/Users/Benji/Desktop/CS156/inclassexercise2/environment.py",
+		"/E/Users/Benji/Desktop/CS156/hw2/pltrue.py",
+		"/E/Users/Benji/Desktop/CS156/hw2/README",
+		"/E/Users/Benji/Desktop/CS156/inclassexercise2/agents.py",
+		"/E/Users/Benji/Desktop/CS156/hw2/hw2.py",
+		"/E/Users/Benji/Desktop/CS156/inclassexercise2/README",
+		"/E/Users/Benji/Desktop/CS156/inclassexercise2/data.kfb",
+		"/E/Users/Benji/Desktop/CS156/inclassexercise2/logic.py",
+		"/E/Users/Benji/Desktop/CS156/inclassexercise2/custom.py",
+		"/E/Users/Benji/Desktop/agents.py",
+		"/E/Users/Benji/Desktop/cs156_logic.py",
+		"/E/Users/Benji/Desktop/CS156/inclassexercise2/cs156_logic.py",
+		"/E/Users/Benji/Desktop/CS156/sudoku_solver/README",
+		"/E/Users/Benji/Desktop/CS156/sudoku_solver/sudoku_creater.py",
+		"/E/Steam Games/steamapps/common/Kerbal Space Program/GameData/SmartParts/README.md",
+		"/E/Users/Benji/Desktop/CS152/ameoba/processor.scala"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"Injection",
+			"ROOT_",
+			"\t\n",
+			"string",
+			"boost::thread",
+			"info",
+			"24",
+			"default",
+			"thread",
+			"tty",
+			"events",
+			"tty",
+			"fs",
+			"9 7 8",
+			"96",
+			"prinln",
+			"instanceof[ident",
+			"opt",
+			") ",
+			"= null",
+			"null",
+			"new Env",
+			"Funcall",
+			"]();",
+			"connector",
+			"undefined",
+			"param",
+			"print_nm",
+			"raw_input",
+			"raw_",
+			"out of range",
+			"range",
+			" +",
+			"none",
+			"-->",
+			"forward",
+			"checking",
+			"print",
+			"cls",
+			"clear",
+			"exp(",
+			"exp",
+			"turnleft",
+			"PLWumpu",
+			"PL",
+			"wumpus",
+			"stepping",
+			"Wumpus",
+			"Enviro",
+			"XYE",
+			"Wumpus",
+			"XYEN",
+			"Environment",
+			"Enviorn",
+			"XY",
+			"xyenvi",
+			"print",
+			"percept",
+			"self.agents",
+			"program",
+			"plwum",
+			"plwumpus",
+			"__call__",
+			"folkb",
+			"CLWu",
+			"WL",
+			"wumpus",
+			"test_",
+			"wall",
+			"run",
+			"agentfactory",
+			"PL",
+			"environ",
+			"object",
+			"add_object",
+			"Agent",
+			"percept",
+			"Wumpus",
+			"Gold(Object)",
+			"Wall()",
+			"add_object",
+			"_object",
+			"object_",
+			"place",
+			"location",
+			"wumpus",
+			"environment",
+			"{}",
+			"rom",
+			"()",
+			"sys",
+			"this",
+			";",
+			"float",
+			"t2",
+			"addY",
+			"include",
+			"myfunc",
+			"createbrowser",
+			"onbeforebrowse",
+			"edit_hwn",
+			"stop_hwnd",
+			"back_hwnd",
+			"forward_hwnd",
+			"back_hwn",
+			"forward_hw",
+			"reload_hwn",
+			"Reload",
+			"qpop",
+			"close",
+			"qpop",
+			"close",
+			"  char* tname= \"qpop.exe\";\n  wchar_t tmp[15];\n  std::mbstowcs(tmp, tname, strlen(tname) + 1);\n  LPWSTR result = tmp;\n\n  STARTUPINFO si;\n  PROCESS_INFORMATION pi;\n  ZeroMemory(&si, sizeof(si));\n  ZeroMemory(&pi, sizeof(pi));\n  char buffer = '2';\n  HANDLE pipe;\n  pipe = CreateNamedPipe(TEXT(\"\\\\\\\\.\\\\pipe\\\\deciderpipe\"), PIPE_ACCESS_DUPLEX, PIPE_TYPE_BYTE | PIPE_NOWAIT, 1, 8, 8, NMPWAIT_USE_DEFAULT_WAIT, NULL);\n  if(pipe == INVALID_HANDLE_VALUE){\n    exit(1);\n  }\n  CreateProcess(NULL, result, NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, NULL, &si, &pi);\n  while(pipe != INVALID_HANDLE_VALUE){\n    Sleep(100);\n    if(WriteFile(pipe, &buffer, 1, NULL, NULL)) break;\n  }",
+			"UI",
+			"createBrowser",
+			"cefv",
+			"v8",
+			"registerscheme",
+			":\n",
+			"reload",
+			"SimpleHandler",
+			"MessageHandler",
+			"messagehandler",
+			"include",
+			"cefsimpl",
+			"replaceme",
+			"\\n",
+			"-----replace------"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"self",
+			"",
+			"NetHandler",
+			"\\n",
+			"replaceme",
+			"\\n",
+			"-----replace------",
+			"\\n",
+			"",
+			"--replace me!--",
+			"\\n",
+			"",
+			"\\\"",
+			"%%",
+			"\\%",
+			"\\'",
+			"\\\"",
+			",",
+			",N/A,",
+			",",
+			"output",
+			"/",
+			"",
+			"310.dll.a",
+			".dll.a",
+			"-L",
+			"-l",
+			"-llib",
+			"",
+			"-L",
+			"",
+			"current_time",
+			"h_seller_thread",
+			"",
+			" compare_num",
+			"compare_num"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 32.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 334.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/MSBuild selector/MSBuildSelector.sublime-build",
+	"project": "Compiler_Project.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 277.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -105,7 +105,7 @@ int main(){
 
 	}
 	delete info.pic_data_array;
-	delete img_dimensions;
+	free(img_dimensions);
 	Gdiplus::GdiplusShutdown(gdiplusToken);
 	return 0;
 }
