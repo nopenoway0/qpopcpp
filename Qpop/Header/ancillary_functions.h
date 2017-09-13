@@ -183,11 +183,9 @@ namespace Ancillary_Function{
 
 		//***********************************Seperate into utility funciton************************************
 		//*************************************Find PID with process name**************************************
-		//std::cerr << "Looking for " << p_name << "\n";
 		DWORD* list_processes = (DWORD*) malloc(sizeof(DWORD) * 2048);
 		DWORD bytes_returned;
 		if(!EnumProcesses(list_processes, sizeof(DWORD) * 2048, &bytes_returned)){
-			//std::cerr << "Couldnt read processes";
 			return 0;
 		}
 		//Print all processes
@@ -200,19 +198,13 @@ namespace Ancillary_Function{
 		for(int x = 1; x < bytes_returned / sizeof(DWORD); x++){
 			process = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, list_processes[x]);
 			if( NULL == process){
-				//std::cerr << "Error Occured Opening Process " << list_processes[x] << ": " << GetLastError() << "\n";
 			}
-			//else std::cout << "Success Opening Process: " << list_processes[x] << "\n";
 			if(!GetModuleBaseNameA(process, NULL, name, 20)){
-				//std::cerr << "Error Getting Module Name " << std::string(name) << "\n";
 			}
-			//else std::cout << "Process " << name << " connected\n";
 			if(!(p_name.compare(std::string(name)))){
-				//std::cout << "Found Process: " << name << "\n\tPID: " << list_processes[x] << "\n";
 				pid = list_processes[x];
 				break;
 			}
-			//else std::cout << "\nNo Match\n";
 		CloseHandle(process);
 		}
 		free(name);
@@ -221,24 +213,17 @@ namespace Ancillary_Function{
 
 		//*************************************************************************************************************
 		if(pid == (DWORD) -1){
-			//main_window = 0;
 			return 0;
 		} 
-		/*
-		Get Windows Handles
-		 */
+
 		//add check for failure
 		struct handle_data* data = (struct handle_data*) calloc(1, sizeof(struct handle_data));
 
 		data->pid = pid;
 		if(EnumWindows(WNDENUMPROC (*EnumWindowsProc), (LPARAM) data)){
-			//std::cerr << "Couldn't find " << p_name << "\n";
 			free(data);
 			return 0;
-			//main_window = 0;
 		}
-		//std::cout << "\n\nHandle after match" << data->window << "\n\n";
-
 		HWND result = data->window;
 		free(data);
 		return result;
@@ -336,6 +321,11 @@ namespace Ancillary_Function{
 
 	inline std::wstring StringToWString(std::string s){
 		return std::wstring(s.begin(), s.end());
+	}
+
+	inline void loadBitmapFromFile(Gdiplus::Bitmap** img, std::string filename){
+		delete *img;
+		*img = new Gdiplus::Bitmap(StringToWString(filename).c_str(), NULL);
 	}
 }
 #endif
