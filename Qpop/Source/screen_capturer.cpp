@@ -16,6 +16,7 @@ namespace Screen_Capturer{
 
 	int takeSnapshot(Gdiplus::Bitmap** m, std::string p_name){
 		HWND main_window = retrieveHWND(p_name);
+		if(main_window == 0) return -1;
 		RECT dimensions;
 		delete *m; // clear old image
 
@@ -35,7 +36,7 @@ namespace Screen_Capturer{
 			DeleteDC(hdcScreen);
 			DeleteObject(hbmp);
 			CloseHandle(main_window);
-			return -1;
+			return -2;
 		}
 		//***********************************************************************************************************************
 		//http://stackoverflow.com/questions/7292757/how-to-get-screenshot-of-a-window-as-bitmap-object-in-c : Davide Piras******
