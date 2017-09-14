@@ -5,13 +5,8 @@
 
 boost::condition_variable condition;
 volatile int _close_qpop;
-std::string _profile_name;
-volatile int _profile_changed;
-boost::mutex _process_chosen_lock;
-boost::mutex _close_qpop_lock;
-volatile int _paused;
-boost::mutex _img_number_lock;
 boost::mutex _monitor_pause;
-volatile int _img_number;
+boost::mutex _delay_after_click;
+volatile int delay_count;
 
 #endif
