@@ -18,161 +18,122 @@
 #include <shared_access.h>
 #define RUNNING_DIR "./"
 
-Qpop_Server main_server;
+using namespace Ancillary_Function;
 
-void ModifyThread();
-void MonitorCondition(Qpop_Server* server, struct Scaling_Info* input, tagSIZE* img_dimensions, std::string exe_name);
-
+void MonitorCondition(Qpop_Server* server, int x, int y, std::string exe_name);
+void SetDelayCount(unsigned int count);
+void DecDelayCount();
 int main(){
+	Qpop_Server main_server;
 	std::cout << "Starting Main Program" << std::endl;
 	Gdiplus::GdiplusStartupInput gdiplusStartupInput;
    	ULONG_PTR gdiplusToken;
    	Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
-	Scaling_Info info;
-	struct result_data rdt;
-
+   	bool image_match = false;
+	std::string exe_name;
+	Gdiplus::Bitmap* snapshot = NULL;
+	Gdiplus::Bitmap* bmp_from_file = NULL;
+	int result = 0;
+	bool local_delay;
    	// Create settings profile for league of legends
    	Settings_Profile cur_prof("lol.txt");
 
    	// Create scaling info struct. Keeps default  x and y for when window is resized. The resize it then applied
    	// To the location of the buttons
-   	
-	info.x_scaler = (float) cur_prof.getDResX();
-	info.y_scaler = (float) cur_prof.getDresY();
-
-
-	
-
-	float cur_diff = 0;
+	loadBitmapFromFile(&bmp_from_file, cur_prof.getImgName(0));
 	float difference = 0;
 	tagSIZE* img_dimensions = (tagSIZE*) calloc(sizeof(tagSIZE), cur_prof.getImgCount());
-	Gdiplus::Bitmap* tmp = NULL;
-	std::string exe_name = cur_prof.getProcessName();
-	// Pointer so it can be deleted before GDUIplusShutdown is called. Otherwise crashing occurs
-	for(int x = 0; x < cur_prof.getImgCount(); x++){
-		tmp = new Gdiplus::Bitmap(info.pic_data_array[x].bmp, NULL);
-		img_dimensions[x].cx = tmp->GetWidth();
-		img_dimensions[x].cy = tmp->GetHeight();
-	}
-	delete tmp;
-	info.num_images = cur_prof.getImgCount();
-	std::cout << "\nAll Images loaded and dimensions set\n";
-	std::cout << "\nWaiting for Match...\n";
+	exe_name = cur_prof.getProcessName();
 
+	// Start up server to connect with mobile app
 	main_server.set_port(8000);
 	main_server.start_server();
-	boost::thread monitor_thread(MonitorCondition, &main_server, &info, img_dimensions, exe_name);
+	// Create thread to manage asynchronous requests. The numbers passed in are the coordinates for the
+	// ExhaustiveClick call. When conditions for the server are true - it recieves a signal from a phone - 
+	// it will call this exhaustive click
+	boost::thread monitor_thread(MonitorCondition, &main_server, cur_prof.getX(0) + (int) (bmp_from_file->GetWidth() / 2), cur_prof.getY(0) + (int) (bmp_from_file->GetHeight() / 2), exe_name);
+	
 	while(_close_qpop == 0){
-		rdt = Screen_Capturer::takeSnapshot(exe_name, Screen_Capturer::compHBITMAP_SEL, (void*) &info);
-		std::cout << "comparison finished: \n";
-		if(rdt.difference != NULL){
-			for(int x = 0; x < cur_prof.getImgCount(); x++){
-				printf("Pic %d: diff: %f threshold %f\n", x, rdt.difference[x], cur_prof.getThresholdAt(x));
-				if(cur_prof.getThresholdAt(x) >0){
-					if(rdt.difference[x] < cur_prof.getThresholdAt(x) && rdt.difference[x] >= 0){
-						std::cout << "Threshold limit reached, activating at " << (info.pic_data_array[x].x + img_dimensions[x].cx) * info.scaling_ratio - (img_dimensions[x].cx * info.scaling_ratio / 2) << "x" << (info.pic_data_array[x].y + img_dimensions[x].cy) * info.scaling_ratio - (img_dimensions[x].cy * info.scaling_ratio / 2) << std::endl;
-						_img_number_lock.lock();
-						_img_number = x;
-						_img_number_lock.unlock();
-						//_monitor_pause.unlock();
-						condition.notify_one();
-						main_server.send("popped");
-					}
-					else{
-						main_server.send("queued");
-						main_server.setCondition(false);
+		result = Screen_Capturer::takeSnapshot(&snapshot, exe_name);
+		if(result != 0) std::cerr << "Error taking snapshot" << std::endl;
+		else{
+			// Crop snapshot with the given profile coordinate and the width and height of the loaded file
+			// This will keep the resolutions the same and attempt to match it with the appropriate picture
+			Img_Processing::cropBitmap(&snapshot, cur_prof.getX(0), cur_prof.getY(0), (int) bmp_from_file->GetWidth(), (int) bmp_from_file->GetHeight());
+			// mulitiply by 100 since the percentage wil come back <= 1
+			difference = Img_Processing::compareMemoryImg(snapshot, bmp_from_file) * 100;
+			if(0 < cur_prof.getThresholdAt(0)) image_match = difference > cur_prof.getThresholdAt(0);
+			// if the threshold is negative in the settings profile it means compare the difference for less than that threshold amount
+			else image_match = difference < (cur_prof.getThresholdAt(0) * -1);
+
+			// send message to mobile according to if the image matched
+			if(image_match){
+				condition.notify_one();
+				if(delay_count <= 0){
+					main_server.send("popped");
+					// If server is connected, set a 20 loop delay. This prevents a click being sent, the button transition
+					// not completing and retriggering the threshold, resulting in a short false positive
+					if(main_server.is_Connected()){
+						SetDelayCount(20);
 					}
 				}
-				if(cur_prof.getThresholdAt(x) < 0){
-					if(rdt.difference[x] > cur_prof.getThresholdAt(x)*-1 && rdt.difference[x] >= 0){
-						std::cout << "Threshold limit reached, activating at " << (info.pic_data_array[x].x + img_dimensions[x].cx) * info.scaling_ratio - (img_dimensions[x].cx * info.scaling_ratio / 2) << "x" << (info.pic_data_array[x].y + img_dimensions[x].cy) * info.scaling_ratio - (img_dimensions[x].cy * info.scaling_ratio / 2) << std::endl;
-						_img_number_lock.lock();
-						_img_number = x;
-						_img_number_lock.unlock();
-						//_monitor_pause.unlock();
-						condition.notify_one();
-						main_server.send("popped");
-					}
-					else{
-						main_server.send("queued");
-						main_server.setCondition(false);
-					}
-				}			}
-			delete rdt.difference;
+			}
+			else{
+				main_server.send("queued");
+				main_server.setCondition(false);
+			}
+			// deduct from delay count every iteration
+			if(delay_count > 0){
+				DecDelayCount();
+			}
+			std::cout << std::endl << "Delay Count: " << delay_count << std::endl;
+			std::cout << "Difference = " << difference << "%" << std::endl;
 		}
-		Sleep(800);
-		while(_paused) Sleep(1000);
 
+		Sleep(500);
 	}
-	delete info.pic_data_array;
+
+	DeleteObject(bmp_from_file);
+	DeleteObject(snapshot);
 	free(img_dimensions);
 	Gdiplus::GdiplusShutdown(gdiplusToken);
 	return 0;
 }
 
-void MonitorCondition(Qpop_Server *s, struct Scaling_Info* info, tagSIZE* img_dimensions, std::string exe_name){
-	int x = 0;
+/**
+ * Monitors the condition of whether or not
+ * @param s        pointer to a running Qpop_server
+ * @param x        x coordinate
+ * @param y        y coordinate
+ * @param exe_name name of process
+ */
+void MonitorCondition(Qpop_Server* s, int x, int y, std::string exe_name){
 	while(_close_qpop == 0){
 		boost::mutex::scoped_lock lock(_monitor_pause);
-		_img_number_lock.lock();
-		x = _img_number;
-		_img_number_lock.unlock();
 		condition.wait(lock);
-		if(main_server.conditionSatisfied()){
-			ExhaustiveClick((info->pic_data_array[x].x + img_dimensions[x].cx) * info->scaling_ratio - (img_dimensions[x].cx * info->scaling_ratio / 2), (info->pic_data_array[x].y + img_dimensions[x].cy) * info->scaling_ratio - (img_dimensions[x].cy * info->scaling_ratio / 2), exe_name);
-			main_server.setCondition(false);
+		if(s->conditionSatisfied()){
+			SetDelayCount(4);
+			ExhaustiveClick(x, y, exe_name);
+			s->setCondition(false);
 		}
 	}
 }
 
 /**
- * Run in seperate thread to handle changes from the gui. A pipe is created that is read from and put into the decider
- * the decier tells the thread to pause, run, or quit which it then modifies, for safety with a mutex, so that these 
- * rules are applied to the main thread as well.
+ * Used to set the current delay count in the main while loop of qpop
+ * @param count number of loop iterations that must be made
  */
-void ModifyThread(){
-	char decider = '0';
-	char buffer_read = '3';
-	DWORD bytes_read = 0;
-	int result = 0;
+void SetDelayCount(unsigned int count){
+	_delay_after_click.lock();
+	delay_count = count;
+	_delay_after_click.unlock();
+}
 
-  HANDLE pipe;
-  pipe = CreateNamedPipe(TEXT("\\\\.\\pipe\\deciderpipe"), PIPE_ACCESS_DUPLEX, PIPE_TYPE_BYTE | PIPE_NOWAIT, 1, 8, 8, NMPWAIT_USE_DEFAULT_WAIT, NULL);
-  if(pipe == INVALID_HANDLE_VALUE){
-  	std::cerr << "\nInvalid Handle Created " << GetLastError() << "\n";
-  }
-  while(pipe != INVALID_HANDLE_VALUE){
-    break;
-  }
-
-	if(pipe == INVALID_HANDLE_VALUE){
-		std::cerr << "ERROR";
-	}
-	else std::cout << "SUCESS";
-
-	while(decider != '1'){
-		Sleep(200);
-		try{
-			result = ReadFile(pipe, &buffer_read, 1, &bytes_read, NULL);
-		}
-		catch(...){
-			std::cerr << "Error Occured result: " << result << "Error Code: " << GetLastError() << "\n";
-		}
-		if(GetLastError() == 109 || result == 0){
-			CloseHandle(pipe);
-			 pipe = CreateNamedPipe(TEXT("\\\\.\\pipe\\deciderpipe"), PIPE_ACCESS_DUPLEX, PIPE_TYPE_BYTE | PIPE_NOWAIT, 1, 8, 8, NMPWAIT_USE_DEFAULT_WAIT, NULL);
-		}
-		if(bytes_read > 0) decider = buffer_read;
-		if(decider == '1'){
-			_close_qpop_lock.lock();
-			_close_qpop = decider;
-			_close_qpop_lock.unlock();
-		}
-		if(decider == '2'){
-			_paused = 1;
-		}
-		else _paused = 0;
-	}
-	CloseHandle(pipe);
-	return;
+/**
+ * Decerement delay count
+ */
+void DecDelayCount(){
+	_delay_after_click.lock();
+	delay_count--;
+	_delay_after_click.unlock();	
 }
