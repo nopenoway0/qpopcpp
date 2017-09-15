@@ -47,6 +47,8 @@ void Qpop_Server::setCondition(bool newState){
 	this->condition = newState;
 }
 
+
+
 void Qpop_Server::on_message(Qpop_Server* s, websocketpp::connection_hdl hdl, message_ptr msg){
     std::cout << "on_message called with hdl: " << hdl.lock().get()
               << " and message: " << msg->get_payload()
@@ -94,4 +96,12 @@ void Qpop_Server::set_port(int num){
 
 bool Qpop_Server::is_Connected(){
 	return this->is_connected;
+}
+
+void Qpop_Server::createAuthNum(){
+	this->auth_num = (rand() % 9000) + 1000;
+}
+
+int Qpop_Server::getAuthNum(){
+	return this->auth_num;
 }
