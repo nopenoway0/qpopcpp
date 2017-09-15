@@ -7,10 +7,6 @@
 #include <windows.h>
 #include <qpop_server.h>
 #include <gdiplus.h>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/xml_parser.hpp>
-#include <boost/foreach.hpp>
-#include <boost/filesystem.hpp>
 #include <boost/thread.hpp>
 #include <img_processing.h>
 #include <screen_capturer.h>
