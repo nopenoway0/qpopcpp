@@ -39,6 +39,7 @@ class Qpop_Server{
 		static void on_message(Qpop_Server* s, websocketpp::connection_hdl hdl, message_ptr msg);
 		static void on_open(Qpop_Server *s, websocketpp::connection_hdl hdl);
 		static void on_close(Qpop_Server* s, websocketpp::connection_hdl hdl);
+		static bool validate_connection(Qpop_Server* s, websocketpp::connection_hdl hdl);
 		int port;
 		bool is_connected;
 		bool authentication_status;
