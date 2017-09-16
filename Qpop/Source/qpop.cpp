@@ -20,6 +20,7 @@ void MonitorCondition(Qpop_Server* server, int x, int y, std::string exe_name);
 void SetDelayCount(unsigned int count);
 void DecDelayCount();
 int main(){
+	srand(time(NULL));
 	Qpop_Server main_server;
 	std::cout << "Starting Main Program" << std::endl;
 	Gdiplus::GdiplusStartupInput gdiplusStartupInput;
@@ -51,8 +52,8 @@ int main(){
 	
 	while(_close_qpop == 0){
 		result = Screen_Capturer::takeSnapshot(&snapshot, exe_name);
-		if(result != 0) std::cerr << "Error taking snapshot" << std::endl;
-		else{
+		if(result == 0)
+		{
 			// Crop snapshot with the given profile coordinate and the width and height of the loaded file
 			// This will keep the resolutions the same and attempt to match it with the appropriate picture
 			Img_Processing::cropBitmap(&snapshot, cur_prof.getX(0), cur_prof.getY(0), (int) bmp_from_file->GetWidth(), (int) bmp_from_file->GetHeight());
@@ -84,6 +85,11 @@ int main(){
 			}
 			std::cout << std::endl << "Delay Count: " << delay_count << std::endl;
 			std::cout << "Difference = " << difference << "%" << std::endl;
+		}
+		// Prevent from websocket closing if league isn't running
+		else{
+			main_server.send("queued");
+			main_server.setCondition(false);
 		}
 
 		Sleep(500);
