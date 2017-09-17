@@ -1,10 +1,12 @@
 #include <qpop_server.h>
+using namespace std;
 
 Qpop_Server::Qpop_Server(){
 	this->_connected.lock();
 	this->is_connected = false;
 	this->_connected.unlock();
 	this->condition = false;
+	this->createAuthNum();
 }
 // Crashes system, because calls are on different threads
 void Qpop_Server::stop_server(){
@@ -16,25 +18,24 @@ void Qpop_Server::start_server(){
 	this->q_server.set_message_handler(bind(&Qpop_Server::on_message, this, placeholders::_1, placeholders::_2));
 	this->q_server.set_open_handler(bind(&Qpop_Server::on_open, this, placeholders::_1));
 	this->q_server.set_close_handler(bind(&Qpop_Server::on_close, this, placeholders::_1));
+	this->q_server.set_validate_handler(bind(&Qpop_Server::validate_connection, this, placeholders::_1));
 	this->network_thread = boost::thread(&Qpop_Server::intialize, this);
 }
 
-void Qpop_Server::send(std::string message){
+void Qpop_Server::send(string message){
 	if(this->is_connected == true) {
 		this->q_server.send(this->current_connection, message, websocketpp::frame::opcode::text);
 	}
 }
 
 void Qpop_Server::intialize(Qpop_Server* s){
-	std::cout << "initializing server" << std::endl;
+	cout << "initializing server" << endl;
 	s->q_server.init_asio();
 	s->q_server.listen(s->port);
-	std::cout << "initiated asio" << std::endl;
 	try{
 		s->q_server.start_accept();
-		std::cout << "accepted finished" << std::endl;
-	}catch(std::exception e){
-		std::cerr << "Error: " << e.what() << std::endl;
+	}catch(exception e){
+		throw e;
 	}
 	s->q_server.run();
 }
@@ -47,10 +48,12 @@ void Qpop_Server::setCondition(bool newState){
 	this->condition = newState;
 }
 
+
+
 void Qpop_Server::on_message(Qpop_Server* s, websocketpp::connection_hdl hdl, message_ptr msg){
-    std::cout << "on_message called with hdl: " << hdl.lock().get()
+    cout << "on_message called with hdl: " << hdl.lock().get()
               << " and message: " << msg->get_payload()
-              << std::endl;
+              << endl;
 
     // check for a special command to instruct the server to stop listening so
     // it can be cleanly exited.
@@ -61,21 +64,21 @@ void Qpop_Server::on_message(Qpop_Server* s, websocketpp::connection_hdl hdl, me
 
     if(msg->get_payload() == "accepted"){
     	//do stuff
-    	std::cout << "queue accepted" << std::endl;
+    	cout << "queue accepted" << endl;
     	s->setCondition(true);
     }
 
     try {
         s->q_server.send(hdl, msg->get_payload(), msg->get_opcode());
-        std::cout << "\n\n\nSending the following" << msg->get_opcode() << "\n\n\n";
+        cout << "\n\n\nSending the following" << msg->get_opcode() << "\n\n\n";
     } catch (const websocketpp::lib::error_code& e) {
-        std::cout << "Echo failed because: " << e
-                  << "(" << e.message() << ")" << std::endl;
+        cout << "Echo failed because: " << e
+                  << "(" << e.message() << ")" << endl;
     }
 }
 
 void Qpop_Server::on_open(Qpop_Server* s, websocketpp::connection_hdl hdl){
-	std::cout << "\nPROPER CONNECTION!\n";
+	cout << "\nPROPER CONNECTION!\n";
     s->current_connection = hdl;
     s->_connected.lock();
     s->is_connected = true;
@@ -94,4 +97,23 @@ void Qpop_Server::set_port(int num){
 
 bool Qpop_Server::is_Connected(){
 	return this->is_connected;
+}
+
+void Qpop_Server::createAuthNum(){
+	this->auth_num = (rand() % 9000) + 1000;
+}
+
+int Qpop_Server::getAuthNum(){
+	return this->auth_num;
+}
+
+bool Qpop_Server::validate_connection(Qpop_Server* s, websocketpp::connection_hdl hdl){
+	server::connection_ptr p = 	s->q_server.get_con_from_hdl(hdl);
+	try{
+		int auth_input = stoi(p->get_resource().substr(1));
+		if(auth_input == s->auth_num) return true;
+	}catch(std::exception& e){
+		cerr << e.what();
+	}
+	return false;
 }
