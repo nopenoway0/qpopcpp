@@ -17,7 +17,7 @@ namespace boost
 }
 
 typedef websocketpp::server<websocketpp::config::asio> server;
-typedef websocketpp::server<websocketpp::config::asio> endpoint;
+typedef boost::asio::io_service io_service;
 typedef server::message_ptr message_ptr;
 
 class Qpop_Server{
@@ -34,15 +34,16 @@ class Qpop_Server{
 		void setCondition(bool newState);
 		void createAuthNum();
 		int getAuthNum();
+		//make private
 	private:
 		websocketpp::connection_hdl current_connection;
 		static void on_message(Qpop_Server* s, websocketpp::connection_hdl hdl, message_ptr msg);
 		static void on_open(Qpop_Server *s, websocketpp::connection_hdl hdl);
 		static void on_close(Qpop_Server* s, websocketpp::connection_hdl hdl);
 		static bool validate_connection(Qpop_Server* s, websocketpp::connection_hdl hdl);
+		int ip;
 		int port;
 		bool is_connected;
-		bool authentication_status;
 		boost::mutex _status;
 		boost::mutex _connected;
 		boost::mutex _chng_mutex;
