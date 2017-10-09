@@ -24,7 +24,7 @@ void MonitorCondition(Qpop_Server* s, int x, int y, std::string exe_name);
 void StartQpopBackend(QpopFrame* frame);
 
 bool QpopApp::OnInit(){
-	QpopFrame* frame = new QpopFrame("Qpop", wxPoint(50,50), wxSize(400, 400));
+	QpopFrame* frame = new QpopFrame("Qpop", wxDefaultPosition, wxSize(250, 200));
 	frame->Show(true);
 	this->qpop_scanner = new boost::thread(StartQpopBackend, frame);
 	return true;
@@ -88,9 +88,9 @@ void StartQpopBackend(QpopFrame* frame){
 	// ExhaustiveClick call. When conditions for the server are true - it recieves a signal from a phone - 
 	// it will call this exhaustive click
     boost::thread monitor_thread(MonitorCondition, &main_server, cur_prof.getX(0) + (int) (bmp_from_file->GetWidth() / 2), cur_prof.getY(0) + (int) (bmp_from_file->GetHeight() / 2), exe_name);
-   	auth_num << main_server.getAuthNum();
 
    	// set text for ip and authnum
+   	auth_num << main_server.getAuthNum();
    	((wxStaticText*) (frame->FindWindowById(wxAUTH_TEXT)))->SetLabelText(auth_num);
 
 	while(_close_qpop == 0){
