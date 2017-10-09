@@ -4,7 +4,6 @@
 #include "qpop_app.h"
 #include "qpop_frame.h"
 
-
 #include <stdio.h>
 #include <string>
 #include <settings_class.h>
@@ -15,6 +14,17 @@
 #include <screen_capturer.h>
 #include <ancillary_functions.h>
 #include <shared_access.h>
+#include <mutex>
+
+
+namespace boost
+{
+	#ifdef BOOST_NO_EXCEPTIONS
+	void throw_exception( std::exception const & e ){
+	    throw e;
+	};
+	#endif
+}
 
 // TODO: check why connections are dropping randomly - reenable authentication
 
@@ -26,7 +36,7 @@ void StartQpopBackend(QpopFrame* frame);
 bool QpopApp::OnInit(){
 	QpopFrame* frame = new QpopFrame("Qpop", wxDefaultPosition, wxSize(250, 200));
 	frame->Show(true);
-	this->qpop_scanner = new boost::thread(StartQpopBackend, frame);
+	this->qpop_scanner = new std::thread(StartQpopBackend, frame);
 	return true;
 }
 
@@ -38,13 +48,14 @@ bool QpopApp::OnInit(){
 * @param y        y coordinate
 * @param exe_name name of process
 */
+
 void MonitorCondition(Qpop_Server* s, int x, int y, std::string exe_name) {
 	// Set up port and start server to interact
 	// with mobile app
 	s->set_port(8000);
 	s->start_server();
 	while (_close_qpop == 0) {
-		boost::mutex::scoped_lock lock(_monitor_pause);
+		std::unique_lock<std::mutex> lock(_monitor_pause);
 		condition.wait(lock);
 		if (s->conditionSatisfied()) {
 			SetDelayCount(4);
@@ -87,7 +98,7 @@ void StartQpopBackend(QpopFrame* frame){
 	// Create thread to manage asynchronous requests. The numbers passed in are the coordinates for the
 	// ExhaustiveClick call. When conditions for the server are true - it recieves a signal from a phone - 
 	// it will call this exhaustive click
-    boost::thread monitor_thread(MonitorCondition, &main_server, cur_prof.getX(0) + (int) (bmp_from_file->GetWidth() / 2), cur_prof.getY(0) + (int) (bmp_from_file->GetHeight() / 2), exe_name);
+    std::thread monitor_thread(MonitorCondition, &main_server, cur_prof.getX(0) + (int) (bmp_from_file->GetWidth() / 2), cur_prof.getY(0) + (int) (bmp_from_file->GetHeight() / 2), exe_name);
 
    	// set text for ip and authnum
    	auth_num << main_server.getAuthNum();

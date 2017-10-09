@@ -4,20 +4,11 @@
 #include <websocketpp/config/asio_no_tls.hpp>
 #include <websocketpp/server.hpp>
 #include <iostream>
-#include <boost/thread/thread.hpp>
-#include <boost/thread/mutex.hpp>
-
-namespace boost
-{
-	#ifdef BOOST_NO_EXCEPTIONS
-	void throw_exception( std::exception const & e ){
-	    throw e; // or whatever
-	};
-#endif
-}
+#include <thread>
+#include <mutex>
 
 typedef websocketpp::server<websocketpp::config::asio> server;
-typedef boost::asio::io_service io_service;
+//typedef boost::asio::io_service io_service;
 typedef server::message_ptr message_ptr;
 
 class Qpop_Server{
@@ -44,13 +35,13 @@ class Qpop_Server{
 		int ip;
 		int port;
 		bool is_connected;
-		boost::mutex _status;
-		boost::mutex _connected;
-		boost::mutex _chng_mutex;
+		std::mutex _status;
+		std::mutex _connected;
+		std::mutex _chng_mutex;
 		bool condition;
 		int auth_num;
 		static void intialize(Qpop_Server* s);
-		boost::thread network_thread;
+		std::thread network_thread;
 };
 
 #endif

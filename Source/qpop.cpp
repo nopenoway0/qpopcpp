@@ -7,7 +7,7 @@
 #include <windows.h>
 #include <qpop_server.h>
 #include <gdiplus.h>
-#include <boost/thread.hpp>
+#include <thread>
 #include <img_processing.h>
 #include <screen_capturer.h>
 #include <ancillary_functions.h>
@@ -16,9 +16,16 @@
 
 using namespace Ancillary_Function;
 
+namespace boost
+{
+	#ifdef BOOST_NO_EXCEPTIONS
+	void throw_exception( std::exception const & e ){
+	    throw e;
+	};
+	#endif
+}
+
 void MonitorCondition(Qpop_Server* server, int x, int y, std::string exe_name);
-void SetDelayCount(unsigned int count);
-void DecDelayCount();
 int main(){
 	srand(time(NULL));
 	Qpop_Server main_server;
@@ -48,7 +55,7 @@ int main(){
 	// Create thread to manage asynchronous requests. The numbers passed in are the coordinates for the
 	// ExhaustiveClick call. When conditions for the server are true - it recieves a signal from a phone - 
 	// it will call this exhaustive click
-	boost::thread monitor_thread(MonitorCondition, &main_server, cur_prof.getX(0) + (int) (bmp_from_file->GetWidth() / 2), cur_prof.getY(0) + (int) (bmp_from_file->GetHeight() / 2), exe_name);
+	std::thread monitor_thread(MonitorCondition, &main_server, cur_prof.getX(0) + (int) (bmp_from_file->GetWidth() / 2), cur_prof.getY(0) + (int) (bmp_from_file->GetHeight() / 2), exe_name);
 	
 	while(_close_qpop == 0){
 		result = Screen_Capturer::takeSnapshot(&snapshot, exe_name);
@@ -111,31 +118,12 @@ int main(){
  */
 void MonitorCondition(Qpop_Server* s, int x, int y, std::string exe_name){
 	while(_close_qpop == 0){
-		boost::mutex::scoped_lock lock(_monitor_pause);
-		condition.wait(lock);
+		//std::mutex::scoped_lock lock(_monitor_pause);
+		//condition.wait(lock);
 		if(s->conditionSatisfied()){
 			SetDelayCount(4);
 			ExhaustiveClick(x, y, exe_name);
 			s->setCondition(false);
 		}
 	}
-}
-
-/**
- * Used to set the current delay count in the main while loop of qpop
- * @param count number of loop iterations that must be made
- */
-void SetDelayCount(unsigned int count){
-	_delay_after_click.lock();
-	delay_count = count;
-	_delay_after_click.unlock();
-}
-
-/**
- * Decerement delay count
- */
-void DecDelayCount(){
-	_delay_after_click.lock();
-	delay_count--;
-	_delay_after_click.unlock();	
 }

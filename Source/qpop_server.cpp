@@ -20,7 +20,7 @@ void Qpop_Server::start_server(){
 	this->q_server.set_open_handler(bind(&Qpop_Server::on_open, this, placeholders::_1));
 	this->q_server.set_close_handler(bind(&Qpop_Server::on_close, this, placeholders::_1));
 	this->q_server.set_validate_handler(bind(&Qpop_Server::validate_connection, this, placeholders::_1));
-	this->network_thread = boost::thread(&Qpop_Server::intialize, this);
+	this->network_thread = thread(&Qpop_Server::intialize, this);
 }
 
 void Qpop_Server::send(string message){
