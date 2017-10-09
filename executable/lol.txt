@@ -1,0 +1,9 @@
+League of legends
+LeagueClientUx.exe
+./
+play.bmp
+1280
+720
+29
+17
+-7
