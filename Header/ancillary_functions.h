@@ -10,6 +10,7 @@
 #include <winuser.h>
 #include <wingdi.h>
 #include <gdiplus.h>
+#include <string>
 
 namespace Ancillary_Function{
 
