@@ -1,9 +1,9 @@
 League of legends
 LeagueClientUx.exe
 ./
-play.bmp
+accept.bmp
 1280
 720
-29
-17
--7
+550
+527
+-2
