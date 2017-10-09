@@ -1,4 +1,5 @@
 #include <qpop_server.h>
+#include <fstream>
 using namespace std;
 
 Qpop_Server::Qpop_Server(){
@@ -19,7 +20,7 @@ void Qpop_Server::start_server(){
 	this->q_server.set_open_handler(bind(&Qpop_Server::on_open, this, placeholders::_1));
 	this->q_server.set_close_handler(bind(&Qpop_Server::on_close, this, placeholders::_1));
 	this->q_server.set_validate_handler(bind(&Qpop_Server::validate_connection, this, placeholders::_1));
-	this->network_thread = boost::thread(&Qpop_Server::intialize, this);
+	this->network_thread = thread(&Qpop_Server::intialize, this);
 }
 
 void Qpop_Server::send(string message){
@@ -29,15 +30,16 @@ void Qpop_Server::send(string message){
 }
 
 void Qpop_Server::intialize(Qpop_Server* s){
-	cout << "initializing server" << endl;
-	s->q_server.init_asio();
-	s->q_server.listen(s->port);
 	try{
+		s->q_server.init_asio();
+		s->q_server.listen(s->port);
 		s->q_server.start_accept();
-	}catch(exception e){
-		throw e;
+		s->q_server.run();
+	}catch(std::exception& e){
+		ofstream log("log.txt");
+		log << e.what();
+		log.close();
 	}
-	s->q_server.run();
 }
 
 bool Qpop_Server::conditionSatisfied(){
@@ -108,6 +110,7 @@ int Qpop_Server::getAuthNum(){
 }
 
 bool Qpop_Server::validate_connection(Qpop_Server* s, websocketpp::connection_hdl hdl){
+	//for testing
 	server::connection_ptr p = 	s->q_server.get_con_from_hdl(hdl);
 	try{
 		int auth_input = stoi(p->get_resource().substr(1));
