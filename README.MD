@@ -22,13 +22,13 @@ Navigate to the QPOP main folder then:
 
 ## USING THE APPLICATION
 The desktop application is a very simple window. If it has not sensed the League of Legends process running it will appear:
-![window example](no_process.png)
+![window example](https://user-images.githubusercontent.com/13967957/33510367-6331b1ac-d6c0-11e7-9ae3-f6fdd112f66a.png)
 
 The top number is the code to be entered into the mobile companion app. The bottom letters *connection* will turn green when a phone is connected to the application.
 
 When the League of Legends Process is detected, the window will change to include the matching percentage between a screenshot of the current program and the a specific picture.
 
-![process found](process.png)
+![process found](https://user-images.githubusercontent.com/13967957/33510365-61666d72-d6c0-11e7-81ca-037ecddc972e.PNG)
 
 ## CHANGING THE CONFIGURATION
 *lol.txt* is the configuration file. It can be changed to scan other programs, or adapted if the League Client changes.
