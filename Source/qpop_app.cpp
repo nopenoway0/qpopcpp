@@ -110,7 +110,8 @@ void StartQpopBackend(QpopFrame* frame){
 		else connect_status_text->SetForegroundColour(wxColour(wxT("RED")));
 		frame->Refresh();
 
-		if(result == 0)
+		if(result == -1) diff_text->SetLabelText("process not found");
+		else if(result == 0)
 		{	
 
 
@@ -155,6 +156,7 @@ void StartQpopBackend(QpopFrame* frame){
 		else{
 			main_server.send("queued");
 			main_server.setCondition(false);
+			diff_text->SetLabelText("-1");
 		}
 
 		Sleep(500);
